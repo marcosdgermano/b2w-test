@@ -1,14 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPlanet } from '../redux/actions'
+import { fetchPlanet, fetchFilms } from '../redux/actions'
 
-import { PlanetInfo } from '../styles';
+import { PlanetInfo, Header } from '../styles';
 
 class ShowPlanetInfo extends React.Component {
   componentDidMount() {
-    this.props.fetchPlanet(Math.floor(Math.random() * 61) + 1);
+    this.props.fetchPlanet(5);
   }
-  
+
+  componentDidUpdate() {
+    this.props.fetchFilms(this.props.currPlanet.films);
+  }
+
 //   fixPop(string) {
 //       let arrString = string.split('').reverse();
 //       arrString.map(() => {
@@ -16,32 +20,55 @@ class ShowPlanetInfo extends React.Component {
 //       })
 //   }
 
+  renderFilms() {
+    if (this.props.films) {
+      return this.props.films.map(film => {
+        return (
+          <h3 style={{ fontStyle: 'italic' }}>{film.title}</h3>
+        );
+      })
+    }
+
+    return null;
+  }
+
   renderPlanet() {
     const planet = this.props.currPlanet;
     //console.log(planet.population.split('').reverse().join('', 3));
     return (
-      <PlanetInfo className="ui main text container">
-        <h1 className="ui header">{planet.name}</h1>
+      <div>
+        <Header className="ui header">{planet.name}</Header>
+        <div className="innerContent">
+          <h2>População: {planet.population}</h2>
+          <h2>Clima: {planet.climate}</h2>
+          <h2>Terreno: {planet.terrain}</h2>
 
-        <h2>População: {planet.population}</h2>
-        <h2>Clima: {planet.climate}</h2>
-        <h2>Terreno: {planet.terrain}</h2>
-      </PlanetInfo>
+          <h3>Filmes: </h3>
+        </div>
+        
+      </div>
     );
   }
 
   render() {
-    console.log(this.props.currPlanet);
+    //console.log(this.props.currPlanet);
 
     if (this.props.currPlanet)
       return this.renderPlanet();
 
-    return <div>Loading</div>;
+    return (
+      <div className="ui active dimmer innerContent">
+        <div className="ui loader" />
+      </div>
+    );
   }
 }
 
 const mapStateToProps = (state) => {
-  return { currPlanet: state.swapi.currPlanet }
+  return {
+    currPlanet: state.swapi.currPlanet,
+    films: state.swapi.films
+  }
 }
 
-export default connect(mapStateToProps, { fetchPlanet })(ShowPlanetInfo);
+export default connect(mapStateToProps, { fetchPlanet, fetchFilms })(ShowPlanetInfo);
