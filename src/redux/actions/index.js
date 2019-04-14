@@ -21,3 +21,7 @@ export const fetchFilms = links => async dispatch => {
 export const fetchedFilms = () => {
     return { type: 'FETCHED_FILMS' };
 }
+
+export const notFetchedFilms = () => {
+    return { type: 'NOT_FETCHED_FILMS' };
+}
