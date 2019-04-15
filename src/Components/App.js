@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import ShowPlanetInfo from './ShowPlanetInfo';
+import Button from './Button';
 import { MainContainer, PlanetInfo } from '../styles';
 
 const App = () => {
-
   return (
-    <MainContainer className="container">
-      <div className="row" style={{ position: 'absolute' }}>
-        <div></div>
-        <PlanetInfo className="ui main text container">
+    <div className="container">
+      <div className="row">
+        <div className="col-md-2" />
+        <PlanetInfo className="ui main text container col-md-auto">
           <ShowPlanetInfo/>
         </PlanetInfo>
+        <Button className="col-md-auto"/>
+        <div className="col-md-3" />
       </div>
-          
-    </MainContainer>
+    </div>
   );
 }
 

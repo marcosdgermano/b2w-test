@@ -1,19 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPlanet, fetchFilms, fetchedFilms, notFetchedFilms } from '../redux/actions';
+import { 
+  fetchPlanet, 
+  fetchFilms, 
+  fetchedFilms, 
+  notFetchedFilms,
+  returnPlanet
+} from '../redux/actions';
 
-import { PlanetInfo, Header } from '../styles';
+import { PlanetInfo, Header, Film } from '../styles';
 
-class ShowPlanetInfo extends React.Component {
+class ShowPlanetInfo extends React.Component { 
   componentDidMount() {
-    this.props.notFetchedFilms();
+    //this.props.notFetchedFilms();
     this.props.fetchPlanet(Math.floor(Math.random()*61)+1);
   }
 
   componentDidUpdate() {
-  console.log(this.props.currPlanet);
     if (!this.props.fetched && this.props.currPlanet){
-      this.props.fetchFilms(this.props.currPlanet.films);
       this.props.fetchedFilms();
     }
   }
@@ -30,11 +34,11 @@ class ShowPlanetInfo extends React.Component {
       if (this.props.films.length > 0) {
         return this.props.films.map(film => {
           return (
-            <h3 style={{ fontStyle: 'italic' }}>{film.title}</h3>
+            <Film>{film.title}; </Film>
           );
         })
       } else {
-        return <h3 style={{ fontStyle: 'italic' }}>Nenhum filme</h3>;
+        return <Film>Nenhum filme</Film>;
       }
     }
 
@@ -52,7 +56,7 @@ class ShowPlanetInfo extends React.Component {
           <h2>Clima: {planet.climate}</h2>
           <h2>Terreno: {planet.terrain}</h2>
 
-          <h3>Filmes: {this.renderFilms()}</h3>
+          <h2>Filmes: {this.renderFilms()}</h2>
         </div>
         
       </div>
@@ -60,13 +64,13 @@ class ShowPlanetInfo extends React.Component {
   }
 
   render() {
-    //console.log(this.props.currPlanet);
+    //console.log(this.props.fetched);
 
-    if (this.props.currPlanet && this.props.films)
+    if (this.props.currPlanet && this.props.fetched && this.props.films)
       return this.renderPlanet();
 
     return (
-      <div className="ui active dimmer innerContent">
+      <div className="ui active dimmer">
         <div className="ui loader" />
       </div>
     );
@@ -87,6 +91,7 @@ export default connect(
     fetchPlanet, 
     fetchFilms,
     fetchedFilms, 
-    notFetchedFilms
+    notFetchedFilms,
+    returnPlanet
   }
 )(ShowPlanetInfo);
