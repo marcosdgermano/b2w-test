@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPlanet } from '../redux/actions';
-import { formatThousandSeparator, translateError, random } from '../helpers';
+import Image from './Image';
 
-import { PlanetInfo, Header, Film } from '../styles';
+import { formatThousandSeparator, translateError, random } from '../helpers';
+import { Header, Film, FilmImage } from '../styles';
 
 class ShowPlanetInfo extends React.Component { 
   componentDidMount() {
-    this.props.fetchPlanet(random(61));
+    this.props.fetchPlanet(1);
   }
 
   renderFilms() {
@@ -16,7 +17,12 @@ class ShowPlanetInfo extends React.Component {
       if (films.length > 0) {
         return films.map(film => {
           return (
-            <Film>{film.title}; </Film>
+            <Image 
+              title={film.title}
+              src={film.img.url}
+              // onMouseOver={() => {console.log(film.title)}}
+              // onMouseOut={null}
+            />
           );
         })
       } else {
@@ -36,8 +42,8 @@ class ShowPlanetInfo extends React.Component {
           <h2>População: {formatThousandSeparator(planet.population)}</h2>
           <h2>Clima: {planet.climate}</h2>
           <h2>Terreno: {planet.terrain}</h2>
-
-          <h2>Filmes: {this.renderFilms()}</h2>
+          <h2>Filmes:</h2>
+          <div style={{ textAlign: 'center' }}>{this.renderFilms()}</div>
         </div>
         
       </div>

@@ -9,6 +9,6 @@ export const translateError = (error) => {
     }
 }
 
-export const random = (x) => {
+export const random = (x = 0) => {
     return Math.floor(Math.random() * x) + 1;
 }

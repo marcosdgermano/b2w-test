@@ -34,6 +34,7 @@ export const Header = styled.h1 `
     position: relative;
     top: 20px;
     font-size: 4rem !important;
+    font-family: 'black_capsregular', Arial, sans-serif;
 `;
 
 export const Film = styled.p `
@@ -48,4 +49,15 @@ export const NextButton = styled.button `
     width: 100px;
     height: 75px;
     top: 200px;
+`
+
+export const FilmImage = styled.img `
+    width: 60px;
+    height: 90px;
+    margin: 2.5px;
+
+    &:hover {
+        transition: transform .32s ease;
+        transform: scale(2.5);
+    }
 `
