@@ -8,10 +8,10 @@ const App = () => {
     <div className="container">
       <div className="row">
         <div className="col-md-2" />
-        <PlanetInfo className="ui main text container col-md-auto">
+        <PlanetInfo className="ui main text container col-12 col-md-auto">
           <ShowPlanetInfo/>
         </PlanetInfo>
-        <Button className="col-md-auto"/>
+        <Button className="col-12 col-md-auto"/>
         <div className="col-md-3" />
       </div>
     </div>

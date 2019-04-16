@@ -17,20 +17,19 @@ class ShowPlanetInfo extends React.Component {
       if (films.length > 0) {
         return films.map(film => {
           return (
-            <Image 
+            <FilmImage 
               title={film.title}
-              src={film.img.url}
-              // onMouseOver={() => {console.log(film.title)}}
-              // onMouseOut={null}
+              src={film.img.url} 
+              alt=""
             />
           );
         })
       } else {
-        return <Film>Nenhum filme</Film>;
+        return <h3>No Film</h3>;
       }
     }
 
-    return null;
+    return <span>Error: No film loaded</span>;
   }
 
   renderPlanet() {
@@ -39,9 +38,15 @@ class ShowPlanetInfo extends React.Component {
       <div>
         <Header className="ui header">{planet.name}</Header>
         <div className="innerContent">
-          <h2>População: {formatThousandSeparator(planet.population)}</h2>
-          <h2>Clima: {planet.climate}</h2>
-          <h2>Terreno: {planet.terrain}</h2>
+          <h2>População:
+            <h3>&nbsp;{formatThousandSeparator(planet.population)}</h3>
+          </h2>
+          <h2>Clima: 
+            <h3>&nbsp;{planet.climate}</h3>
+          </h2>
+          <h2>Terreno:
+            <h3>&nbsp;{planet.terrain}</h3>
+          </h2>
           <h2>Filmes:</h2>
           <div style={{ textAlign: 'center' }}>{this.renderFilms()}</div>
         </div>

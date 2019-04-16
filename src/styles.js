@@ -22,16 +22,22 @@ export const PlanetInfo = styled.div `
         top: 30px;
     }
 
-    h1, h2, h3 {
+    h2, h3 {
         position: relative;
         text-align: center;
         margin-block-start: 0.5em !important;
         margin-block-end: 0.5em !important;
     }
+    h3 {
+        font-style: italic;
+        display: -webkit-inline-box;
+        font-size: 1.7rem !important;
+    }
 `;
 
 export const Header = styled.h1 `
     position: relative;
+    text-align: center;
     top: 20px;
     font-size: 4rem !important;
     font-family: 'black_capsregular', Arial, sans-serif;
