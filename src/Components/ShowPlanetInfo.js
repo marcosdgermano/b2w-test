@@ -1,38 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { 
-  fetchPlanet, 
-  fetchFilms, 
-  fetchedFilms, 
-  notFetchedFilms,
-  returnPlanet
-} from '../redux/actions';
+import { fetchPlanet } from '../redux/actions';
+import { formatThousandSeparator, translateError, random } from '../helpers';
 
 import { PlanetInfo, Header, Film } from '../styles';
 
 class ShowPlanetInfo extends React.Component { 
   componentDidMount() {
-    //this.props.notFetchedFilms();
-    this.props.fetchPlanet(Math.floor(Math.random()*61)+1);
+    this.props.fetchPlanet(random(61));
   }
-
-  componentDidUpdate() {
-    if (!this.props.fetched && this.props.currPlanet){
-      this.props.fetchedFilms();
-    }
-  }
-
-//   fixPop(string) {
-//       let arrString = string.split('').reverse();
-//       arrString.map(() => {
-
-//       })
-//   }
 
   renderFilms() {
-    if (this.props.films) {
-      if (this.props.films.length > 0) {
-        return this.props.films.map(film => {
+    const { films } = this.props;
+    if (films) {
+      if (films.length > 0) {
+        return films.map(film => {
           return (
             <Film>{film.title}; </Film>
           );
@@ -46,13 +28,12 @@ class ShowPlanetInfo extends React.Component {
   }
 
   renderPlanet() {
-    const planet = this.props.currPlanet;
-    //console.log(planet.population.split('').reverse().join('', 3));
+    const { planet } = this.props;
     return (
       <div>
         <Header className="ui header">{planet.name}</Header>
         <div className="innerContent">
-          <h2>População: {planet.population}</h2>
+          <h2>População: {formatThousandSeparator(planet.population)}</h2>
           <h2>Clima: {planet.climate}</h2>
           <h2>Terreno: {planet.terrain}</h2>
 
@@ -64,34 +45,30 @@ class ShowPlanetInfo extends React.Component {
   }
 
   render() {
-    //console.log(this.props.fetched);
+    const { planet, planetRequesting, planetError } = this.props;
 
-    if (this.props.currPlanet && this.props.fetched && this.props.films)
-      return this.renderPlanet();
+    if (planetRequesting) {
+      return (
+        <div className="ui active dimmer">
+          <div className="ui loader" />
+        </div>
+      );
+    }
 
-    return (
-      <div className="ui active dimmer">
-        <div className="ui loader" />
-      </div>
-    );
+    if (planetError) 
+      return <p>{translateError(planetError)}</p>;
+
+    if (planet) return this.renderPlanet();
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    currPlanet: state.swapi.currPlanet,
-    films: state.swapi.films,
-    fetched: state.swapi.fetched
+    planet: state.swapi.planet,
+    planetRequesting: state.swapi.planetRequesting,
+    planetError: state.swapi.planetError,
+    films: state.swapi.films
   }
 }
 
-export default connect(
-  mapStateToProps,
-  { 
-    fetchPlanet, 
-    fetchFilms,
-    fetchedFilms, 
-    notFetchedFilms,
-    returnPlanet
-  }
-)(ShowPlanetInfo);
+export default connect(mapStateToProps, { fetchPlanet })(ShowPlanetInfo);

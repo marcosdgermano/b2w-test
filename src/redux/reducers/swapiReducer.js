@@ -1,16 +1,33 @@
 import _ from 'lodash';
 
-export default (state = {}, action) => {
+const INIT_STATE = {
+    planetRequesting: true,
+    planetError: null,
+    planet: {},
+    films: {}
+}
+
+export default (state = INIT_STATE, action) => {
     switch(action.type){
+        case 'FETCH_PLANET_REQUEST':
+            return { ...state, planetRequesting: true }
+        case 'FETCH_PLANET_ERROR': 
+            return { 
+                ...state,
+                planetRequesting: false,
+                planetError: action.error,
+                planet: {},
+                films: {}
+            };
         case 'FETCH_PLANET': 
-            return { ...state, currPlanet: action.payload };
-        case 'FETCH_FILMS':
-            return { ...state, films: action.payload }
-        case 'FETCHED_FILMS':
-            return { ...state, fetched: true }
-        case 'NOT_FETCHED_FILMS':
-            return {...state, fetched: false};
-        default: 
-            return state
+            return { 
+                ...state,
+                planetRequesting: false,
+                planetError: null,
+                planet: action.payload.planet,
+                films: action.payload.films
+            };
+        default:
+            return state;
     }
 }
