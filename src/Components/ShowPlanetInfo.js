@@ -7,7 +7,7 @@ import { Header, Film, FilmImage } from '../styles';
 
 class ShowPlanetInfo extends React.Component { 
   componentDidMount() {
-    this.props.fetchPlanet(67);
+    this.props.fetchPlanet(random(61));
   }
 
   renderFilms() {
@@ -24,7 +24,7 @@ class ShowPlanetInfo extends React.Component {
           );
         })
       } else {
-        return <h3>No Film</h3>;
+        return <h3>No Films</h3>;
       }
     }
 
@@ -46,7 +46,7 @@ class ShowPlanetInfo extends React.Component {
           <h2>Terrain:
             <p>&nbsp;{planet.terrain}</p>
           </h2>
-          <h2>Films:</h2>
+          <h2>Featured in Films:</h2>
           <div style={{ textAlign: 'center' }}>{this.renderFilms()}</div>
         </div>
         
