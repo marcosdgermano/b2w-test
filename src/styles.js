@@ -7,9 +7,9 @@ export const PlanetInfo = styled.div `
     top: 30px;
     height: 460px;
     width: 480px !important;
-    border: 3px solid #000;
-    border-radius: 9%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+    /* border: 2px solid #ececec; */
+    border-radius: 10%;
+    box-shadow: 0 5px 9px rgba(0, 0, 0, 1);
 
     div.dimmer {
         border-radius: 9%;
@@ -22,13 +22,13 @@ export const PlanetInfo = styled.div `
         top: 30px;
     }
 
-    h2, h3 {
+    h2, p {
         position: relative;
         text-align: center;
-        margin-block-start: 0.5em !important;
-        margin-block-end: 0.5em !important;
+        margin-block-start: 0.3em !important;
+        margin-block-end: 0.3em !important;
     }
-    h3 {
+    p {
         font-style: italic;
         display: -webkit-inline-box;
         font-size: 1.7rem !important;
@@ -55,6 +55,7 @@ export const NextButton = styled.button `
     width: 100px;
     height: 75px;
     top: 200px;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 1) !important;
 `
 
 export const FilmImage = styled.img `
