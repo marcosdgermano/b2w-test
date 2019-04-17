@@ -7,7 +7,7 @@ import { Header, Film, FilmImage } from '../styles';
 
 class ShowPlanetInfo extends React.Component { 
   componentDidMount() {
-    this.props.fetchPlanet(8);
+    this.props.fetchPlanet(67);
   }
 
   renderFilms() {
@@ -37,16 +37,16 @@ class ShowPlanetInfo extends React.Component {
       <div style={{flex: 1}}>
         <Header className="ui header">{planet.name}</Header>
         <div className="innerContent">
-          <h2>População:
+          <h2>Population:
             <p>&nbsp;{formatThousandSeparator(planet.population)}</p>
           </h2>
-          <h2>Clima: 
+          <h2>Climate: 
             <p>&nbsp;{planet.climate}</p>
           </h2>
-          <h2>Terreno:
+          <h2>Terrain:
             <p>&nbsp;{planet.terrain}</p>
           </h2>
-          <h2>Filmes:</h2>
+          <h2>Films:</h2>
           <div style={{ textAlign: 'center' }}>{this.renderFilms()}</div>
         </div>
         
@@ -66,7 +66,7 @@ class ShowPlanetInfo extends React.Component {
     }
 
     if (planetError) 
-      return <p>{translateError(planetError)}</p>;
+      return <span>PLANET NOT FOUND!</span>;
 
     if (planet) return this.renderPlanet();
   }

@@ -9,15 +9,13 @@ export const MainContainer = styled.div `
 
 export const PlanetInfo = styled.div `
     position: relative;
+    min-width: 400px;
     min-height: 460px;
     height: auto;
     padding: 15px;
     margin: 0 !important;
     border-radius: 10%;
     box-shadow: 0 5px 9px rgba(0, 0, 0, 1);
-
-    display: flex;
-    flex-wrap: wrap;
 
     div.dimmer {
         border-radius: 9%;
