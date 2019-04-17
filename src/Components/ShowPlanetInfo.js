@@ -7,7 +7,7 @@ import { Header, Film, FilmImage } from '../styles';
 
 class ShowPlanetInfo extends React.Component { 
   componentDidMount() {
-    this.props.fetchPlanet(random(61));
+    this.props.fetchPlanet(8);
   }
 
   renderFilms() {
@@ -34,7 +34,7 @@ class ShowPlanetInfo extends React.Component {
   renderPlanet() {
     const { planet } = this.props;
     return (
-      <div>
+      <div style={{flex: 1}}>
         <Header className="ui header">{planet.name}</Header>
         <div className="innerContent">
           <h2>População:

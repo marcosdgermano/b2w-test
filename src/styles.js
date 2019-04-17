@@ -1,15 +1,23 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div ``;
+export const MainContainer = styled.div `
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
 
 export const PlanetInfo = styled.div `
     position: relative;
-    top: 30px;
-    height: 460px;
-    width: 480px !important;
-    /* border: 2px solid #ececec; */
+    min-height: 460px;
+    height: auto;
+    padding: 15px;
+    margin: 0 !important;
     border-radius: 10%;
     box-shadow: 0 5px 9px rgba(0, 0, 0, 1);
+
+    display: flex;
+    flex-wrap: wrap;
 
     div.dimmer {
         border-radius: 9%;
@@ -33,6 +41,10 @@ export const PlanetInfo = styled.div `
         display: -webkit-inline-box;
         font-size: 1.7rem !important;
     }
+
+    @media (max-width: 596px) {
+        padding-bottom: 70px;
+    }
 `;
 
 export const Header = styled.h1 `
@@ -51,10 +63,11 @@ export const Film = styled.p `
 `
 
 export const NextButton = styled.button `
+    align-self: center;
     position: relative;
     width: 100px;
     height: 75px;
-    top: 200px;
+    margin: 30px 0 !important;
     box-shadow: 0 1px 7px rgba(0, 0, 0, 1) !important;
 `
 
@@ -66,5 +79,20 @@ export const FilmImage = styled.img `
     &:hover {
         transition: transform .32s ease;
         transform: scale(2.5);
+    }
+`
+
+export const Row = styled.div `
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: center;
+
+    .ui.main.text.container {
+        max-width: 515px !important;
+        margin: 0 40px !important;
     }
 `

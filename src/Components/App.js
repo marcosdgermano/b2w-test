@@ -1,20 +1,18 @@
 import React from 'react';
 import ShowPlanetInfo from './ShowPlanetInfo';
 import Button from './Button';
-import { MainContainer, PlanetInfo } from '../styles';
+import { MainContainer, PlanetInfo, Row } from '../styles';
 
 const App = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-2" />
-        <PlanetInfo className="ui main text container col-12 col-md-auto">
+    <MainContainer id="mainContainer" className="container">
+      <Row>
+        <PlanetInfo className="ui main text container" >
           <ShowPlanetInfo/>
         </PlanetInfo>
-        <Button className="col-12 col-md-auto"/>
-        <div className="col-md-3" />
-      </div>
-    </div>
+        <Button/>
+      </Row>
+    </MainContainer>
   );
 }
 
